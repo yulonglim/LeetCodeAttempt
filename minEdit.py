@@ -1,13 +1,13 @@
-import numpy as np
+# https://leetcode.com/problems/edit-distance/
 
-def minEditDistance(source, target):
+def minDistance(source, target):
     m = len(source)
     n = len(target)
     def check(source,target):
         if source is target:
             return 0
         else:
-            return 2
+            return 1
     matrix = [0 for i in range(n+1)]
     for i in range(n+1):
         matrix[i] = [0 for i in range(m+1)]
@@ -18,7 +18,6 @@ def minEditDistance(source, target):
     for i in range(1,n+1):
         for j in range(1,m+1):
             matrix[i][j] = min(matrix[i-1][j]+1,matrix[i][j-1]+1,matrix[i-1][j-1] + check(source[j-1],target[i-1]))
-        print(matrix[i])
     return matrix[n][m]
     
 
